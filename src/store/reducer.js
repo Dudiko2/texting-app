@@ -3,7 +3,7 @@ import { emitChatMessage } from "../api/socketClient";
 
 const initialState = {
 	txtValue: "",
-	sent: []
+	messageBoard: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -21,7 +21,12 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				txtValue: "",
-				sent: [...state.sent].concat(msgObj)
+				messageBoard: [...state.messageBoard].concat(msgObj)
+			};
+		case actionTypes.MESSAGE_RECEIVED:
+			return {
+				...state,
+				messageBoard: [...state.messageBoard].concat(action.msgObj)
 			};
 		default:
 			return state;

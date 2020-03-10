@@ -12,6 +12,7 @@ io.on("connection", function(socket) {
 
 	socket.on("chat-message", msgObj => {
 		console.log(`message: ${msgObj.text}\nat: ${msgObj.time}`);
+		socket.broadcast.emit("chat-message", msgObj);
 	});
 
 	socket.on("disconnect", () => console.log("a user disconnected"));
