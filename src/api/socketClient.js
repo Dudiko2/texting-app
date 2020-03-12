@@ -1,6 +1,8 @@
 import io from "socket.io-client";
 
-const socket = io("http://localhost:8080/");
+const port = process.env.PORT || 8080;
+
+const socket = io(`http://localhost:${port}/`);
 
 const emitChatMessage = msgObj => socket.emit("chat-message", msgObj);
 
