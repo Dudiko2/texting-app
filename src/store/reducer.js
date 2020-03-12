@@ -3,7 +3,8 @@ import { emitChatMessage } from "../api/socketClient";
 
 const initialState = {
 	txtValue: "",
-	messageBoard: []
+	messageBoard: [],
+	username: `User${Math.floor(Math.random() * 1000)}` // change it to something better once you add support for usernames
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,7 +16,11 @@ const reducer = (state = initialState, action) => {
 			};
 		case actionTypes.SEND_MESSAGE:
 			action.e.preventDefault();
-			const msgObj = { text: action.text, time: new Date() };
+			const msgObj = {
+				text: action.text,
+				time: new Date(),
+				user: state.username
+			};
 			emitChatMessage(msgObj);
 
 			return {

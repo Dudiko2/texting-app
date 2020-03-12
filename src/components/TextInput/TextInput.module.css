@@ -1,10 +1,8 @@
 .Form {
 	display: flex;
 	align-items: center;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
+	grid-column: 1 / -1;
+	grid-row: span 1 / -1;
 	background-color: gray;
 	padding: 1em 0 1em 1em;
 }

@@ -1,0 +1,5 @@
+.View {
+	grid-column: 1 / -1;
+	grid-row: 1 / span 11;
+	overflow-y: scroll;
+}

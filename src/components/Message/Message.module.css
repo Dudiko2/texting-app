@@ -1,0 +1,44 @@
+.MessageCont {
+	display: flex;
+	justify-content: flex-start;
+	padding: 0.5em;
+}
+
+.Message {
+	position: relative;
+}
+
+.Content {
+	position: relative;
+	text-align: left;
+	z-index: 2;
+	margin: 1em;
+}
+
+.Content .Username {
+	font-weight: bold;
+	margin: 0.5em 0;
+}
+
+.Content > * {
+	margin: 0;
+}
+
+.MessageBG {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(235, 235, 235);
+	border-radius: 1em;
+	z-index: 0;
+}
+
+.Me {
+	justify-content: flex-end;
+}
+
+.Me .MessageBG {
+	background-color: rgb(147, 205, 216);
+}

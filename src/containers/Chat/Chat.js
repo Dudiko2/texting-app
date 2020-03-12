@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionTypes from "../../store/actions";
 import TextInput from "../../components/TextInput/TextInput";
+import ChatView from "../../components/ChatView/ChatView";
 import { socket } from "../../api/socketClient";
+import Styles from "./Chat.module.css";
 
 class Chat extends Component {
 	componentDidMount() {
@@ -12,11 +14,17 @@ class Chat extends Component {
 
 	render() {
 		return (
-			<TextInput
-				onSubmit={e => this.props.onSendMessage(e, this.props.txtValue)}
-				onInputChange={e => this.props.onInputChange(e.target.value)}
-				txtValue={this.props.txtValue}
-			/>
+			<div className={Styles.ChatGrid}>
+				<ChatView
+					messageBoard={this.props.messageBoard}
+					username={this.props.username}
+				/>
+				<TextInput
+					onSubmit={e => this.props.onSendMessage(e, this.props.txtValue)}
+					onInputChange={e => this.props.onInputChange(e.target.value)}
+					txtValue={this.props.txtValue}
+				/>
+			</div>
 		);
 	}
 }
@@ -24,7 +32,8 @@ class Chat extends Component {
 const mapStateToProps = state => {
 	return {
 		txtValue: state.txtValue,
-		messageBoard: state.messageBoard
+		messageBoard: state.messageBoard,
+		username: state.username
 	};
 };
 
