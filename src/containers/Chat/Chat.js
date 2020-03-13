@@ -15,10 +15,7 @@ class Chat extends Component {
 	render() {
 		return (
 			<div className={Styles.ChatGrid}>
-				<ChatView
-					messageBoard={this.props.messageBoard}
-					username={this.props.username}
-				/>
+				<ChatView />
 				<TextInput
 					onSubmit={e => this.props.onSendMessage(e, this.props.txtValue)}
 					onInputChange={e => this.props.onInputChange(e.target.value)}
@@ -31,9 +28,7 @@ class Chat extends Component {
 
 const mapStateToProps = state => {
 	return {
-		txtValue: state.txtValue,
-		messageBoard: state.messageBoard,
-		username: state.username
+		txtValue: state.txtValue
 	};
 };
 

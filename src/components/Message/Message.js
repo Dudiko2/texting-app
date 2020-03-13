@@ -2,13 +2,13 @@ import React from "react";
 
 import Styles from "./Message.module.css";
 
-const Message = ({ msg, me = false }) => {
-	let cls = "";
-	if (me) cls = ` ${Styles.Me}`;
+const Message = ({ msg, me = false, last }) => {
+	const myMsgCls = me ? ` ${Styles.Me}` : "";
+	const slideLast = last ? " slide-top" : "";
 
 	return (
-		<div className={Styles.MessageCont + cls}>
-			<div className={Styles.Message}>
+		<div className={Styles.MessageCont + myMsgCls}>
+			<div className={Styles.Message + slideLast}>
 				<div className={Styles.Content}>
 					<p className={Styles.Username}>{msg.user}</p>
 					<p>{msg.text}</p>

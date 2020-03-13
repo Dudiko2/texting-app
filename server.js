@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 	res.send("hey");
 });
 
-io.on("connection", function(socket) {
+io.on("connection", socket => {
 	console.log("a user connected ", socket.id);
 
 	socket.on("chat-message", msgObj => {
@@ -28,6 +28,6 @@ io.on("connection", function(socket) {
 	socket.on("disconnect", () => console.log("a user disconnected"));
 });
 
-server.listen(PORT, function() {
+server.listen(PORT, () => {
 	console.log(`Running on ${PORT}`);
 });
