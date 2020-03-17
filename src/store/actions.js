@@ -3,6 +3,7 @@ import { emitChatMessage } from "../api/socketClient";
 export const CHANGE_INPUT = "CHANGE_INPUT";
 export const CREATE_MESSAGE = "CREATE_MESSAGE";
 export const MESSAGE_RECEIVED = "MESSAGE_RECEIVED";
+export const EMPTY = "EMPTY";
 
 export const changeInput = text => {
 	return {
@@ -27,6 +28,10 @@ export const messageReceived = msgObj => {
 };
 
 export const sendMessage = (e, text, username) => {
+	if (!text.length) {
+		e.preventDefault();
+		return { type: EMPTY };
+	}
 	const msgObj = {
 		text,
 		timestamp: new Date(),

@@ -14,6 +14,9 @@ const reducer = (state = initialState, action) => {
 				txtValue: action.text
 			};
 
+		case actionTypes.EMPTY:
+			return state;
+
 		case actionTypes.CREATE_MESSAGE:
 			action.e.preventDefault();
 
