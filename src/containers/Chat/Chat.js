@@ -7,14 +7,25 @@ import { socket } from "../../api/socketClient";
 import Styles from "./Chat.module.css";
 
 class Chat extends Component {
+	state = {
+		height: window.innerHeight
+	};
+
 	componentDidMount() {
 		socket.on("chat-message", msgObj => this.props.onMessageReceived(msgObj));
 		console.log("Chat mounted");
+		window.addEventListener("resize", () =>
+			this.setState({ height: window.innerHeight })
+		);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener("resize");
 	}
 
 	render() {
 		return (
-			<div className={Styles.ChatGrid}>
+			<div className={Styles.ChatGrid} style={{ height: this.state.height }}>
 				<ChatView />
 				<TextInput
 					onSubmit={e =>
