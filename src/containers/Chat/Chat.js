@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actionTypes from "../../store/actions";
+import * as actions from "../../store/actions";
 import TextInput from "../../components/TextInput/TextInput";
 import ChatView from "../../components/ChatView/ChatView";
 import { socket } from "../../api/socketClient";
@@ -17,7 +17,13 @@ class Chat extends Component {
 			<div className={Styles.ChatGrid}>
 				<ChatView />
 				<TextInput
-					onSubmit={e => this.props.onSendMessage(e, this.props.txtValue)}
+					onSubmit={e =>
+						this.props.onSendMessage(
+							e,
+							this.props.txtValue,
+							this.props.username
+						)
+					}
 					onInputChange={e => this.props.onInputChange(e.target.value)}
 					txtValue={this.props.txtValue}
 				/>
@@ -28,17 +34,17 @@ class Chat extends Component {
 
 const mapStateToProps = state => {
 	return {
-		txtValue: state.txtValue
+		txtValue: state.txtValue,
+		username: state.username
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onInputChange: text => dispatch({ type: actionTypes.CHANGE_INPUT, text }),
-		onSendMessage: (e, text) =>
-			dispatch({ type: actionTypes.SEND_MESSAGE, text, e }),
-		onMessageReceived: msgObj =>
-			dispatch({ type: actionTypes.MESSAGE_RECEIVED, msgObj })
+		onInputChange: text => dispatch(actions.changeInput(text)),
+		onSendMessage: (e, text, username) =>
+			dispatch(actions.sendMessage(e, text, username)),
+		onMessageReceived: msgObj => dispatch(actions.messageReceived(msgObj))
 	};
 };
 

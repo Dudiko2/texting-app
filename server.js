@@ -21,7 +21,7 @@ io.on("connection", socket => {
 	console.log("a user connected ", socket.id);
 
 	socket.on("chat-message", msgObj => {
-		console.log(`message: ${msgObj.text}\nat: ${msgObj.time}`);
+		console.log(`message: ${msgObj.text}\nat: ${msgObj.timestamp}`);
 		socket.broadcast.emit("chat-message", msgObj);
 	});
 

@@ -1,5 +1,4 @@
 import * as actionTypes from "./actions";
-import { emitChatMessage } from "../api/socketClient";
 
 const initialState = {
 	txtValue: "",
@@ -14,20 +13,16 @@ const reducer = (state = initialState, action) => {
 				...state,
 				txtValue: action.text
 			};
-		case actionTypes.SEND_MESSAGE:
+
+		case actionTypes.CREATE_MESSAGE:
 			action.e.preventDefault();
-			const msgObj = {
-				text: action.text,
-				time: new Date(),
-				user: state.username
-			};
-			emitChatMessage(msgObj);
 
 			return {
 				...state,
 				txtValue: "",
-				messageBoard: [...state.messageBoard].concat(msgObj)
+				messageBoard: [...state.messageBoard].concat(action.msgObj)
 			};
+
 		case actionTypes.MESSAGE_RECEIVED:
 			return {
 				...state,
